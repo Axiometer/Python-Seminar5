@@ -36,8 +36,12 @@ def player_turn():
 
 def ai_turn():
     turn = 2023
-    while turn > candies:        
-        turn = candies % 29 if not candies % 29 else randint(1,28)
+    while turn > candies: 
+        if candies <= 28:
+            turn = candies       
+        else:
+            #turn = randint(1,28)
+            turn = candies % 29 if candies % 29 != 0 else randint(1,28)
     print("ПК взял", turn, "конфет")
     return turn
 
@@ -54,7 +58,7 @@ def main():
         player_first = False
 
     global candies
-    candies = 2021
+    candies = 58
     win = ""
     
     while candies > 1:
@@ -63,7 +67,7 @@ def main():
         if player_first:
             candies -= player_turn()
             if candies == 0:
-                win = "Игрок"
+                win = "Игрок" 
                 break
             candies -= ai_turn()
             if candies == 0:
