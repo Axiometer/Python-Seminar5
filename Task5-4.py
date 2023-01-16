@@ -1,3 +1,5 @@
+# Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных
+
 def rle_encode(rawstring):
     encoded = '' 
     prev_char = '' 

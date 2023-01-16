@@ -1,3 +1,10 @@
+# Создайте программу для игры с конфетами человек против человека.
+# Условие задачи: На столе лежит 2021 конфета. 
+# Играют два игрока делая ход друг после друга. 
+# Первый ход определяется жеребьёвкой. 
+# За один ход можно забрать не более чем 28 конфет. 
+# Все конфеты оппонента достаются сделавшему последний ход. 
+
 import os
 from random import choice, randint
 
@@ -34,6 +41,11 @@ def ai_turn():
     print("ПК взял", turn, "конфет")
     return turn
 
+def print_candies():
+    print()
+    print("Количество оставшихся конфет:", candies)
+    return
+
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     if start_game():
@@ -44,22 +56,32 @@ def main():
     global candies
     #candies = 2021
     candies = 45
+    win = ""
     
     while candies > 1:
         print_candies()
 
         if player_first:
             candies -= player_turn()
+            if candies == 0:
+                win = "Игрок"
+                break
             candies -= ai_turn()
+            if candies == 0:
+                win = "Компьютер"
+                break
         else:
             candies -= ai_turn()
+            if candies == 0:
+                win = "Компьютер"
+                break
             print_candies()
             candies -= player_turn()
-
-def print_candies():
-    print()
-    print("Количество оставшихся конфет:", candies)
-    return
+            if candies == 0:
+                win = "Игрок"
+                break
+    print("Выиграл", win)
+        
 
 if __name__ == "__main__":
     main()
