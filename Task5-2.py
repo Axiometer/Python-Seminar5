@@ -55,7 +55,6 @@ def main():
 
     global candies
     candies = 2021
-    
     win = ""
     
     while candies > 1:
